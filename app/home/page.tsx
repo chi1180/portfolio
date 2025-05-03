@@ -1,5 +1,4 @@
 import Header from "@/components/header";
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
@@ -7,20 +6,29 @@ export default function Home() {
     <div className="w-full">
       <Header />
 
-      <main className="w-full h-[calc(100vh-6rem)] p-8 flex">
+      <main className="w-full lg:max-w-[1400px] lg:mx-auto lg:h-[calc(100vh-6rem)] h-auto lg:p-8 p-4 flex flex-col lg:flex-row lg:items-center lg-gap-0">
         {/* Left contents */}
-        <div className="w-2/3 h-full">
-          <h1 className="text-5xl">I am little coder</h1>
-          <h3 className="text-3xl">Write code for Web, Mobile, Desktop...</h3>
+        <div className="w-full py-24 lg:py-0">
+          <h1 className="text-8xl">I am little coder</h1>
+          <h3 className="text-4xl pt-8 pb-22">
+            Write code for Web, Mobile, Desktop...
+          </h3>
 
-          <div className="flex h-12">
-            <Link href="/skills">See skill set</Link>
-            <Link href="/projects">See projects</Link>
+          <div className="flex gap-8 *:text-3xl *:font-medium *:px-7 *:py-5 *:pb-6 *:rounded-md  *:hover:shadow-md">
+            <Link href="/skills" className="text-white bg-(--accent)">
+              See skill set
+            </Link>
+            <Link
+              href="/projects"
+              className="text-(--accent) bg-(--accent-secondary)"
+            >
+              See projects
+            </Link>
           </div>
         </div>
 
         {/* Right contents */}
-        <div className="w-1/3 aspect-square bg-cover bg-[url(/top-image.png)]" />
+        <div className="h-4/5 aspect-square bg-cover bg-center bg-[url(/top-image.png)]" />
       </main>
     </div>
   );
