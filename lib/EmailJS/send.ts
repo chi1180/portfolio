@@ -24,3 +24,5 @@ function sendEmail(message: string) {
     },
   );
 }
+
+export { sendEmail };

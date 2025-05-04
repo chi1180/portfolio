@@ -17,7 +17,7 @@ export default function ContactsPage() {
       <main className="w-full lg:max-w-[1400px] lg:mx-auto lg:h-[calc(100vh-6rem)] h-auto lg:p-8 p-4 flex flex-col lg:flex-row lg:items-center lg-gap-0">
         {/* Right content */}
         <div>
-          <ol>
+          <ol className="w-full p-8 flex flex-col items-center justify-around">
             {Object.entries(SNS).map(([name, url]) => {
               return (
                 <li key={`${name}'s link`}>
@@ -31,18 +31,28 @@ export default function ContactsPage() {
         </div>
 
         {/* Left content */}
-        <div className="flex flex-col gap-24">
+        <div className="w-full h-full *:h-full *:flex *:flex-col *:gap-18">
           <form
             action=""
-            onSubmit={(data) => {
-              data.preventDefault();
-              submitHandler(data.target);
+            onSubmit={(event) => {
+              event.preventDefault();
+
+              const textArea = document.getElementById(
+                "text-input",
+              ) as HTMLTextAreaElement;
+              if (textArea) {
+                submitHandler(textArea.value);
+                textArea.value = "Thank you for your message :)";
+              }
             }}
           >
-            <textarea className="resize-none rounded-lg shadow-md" />
+            <textarea
+              className="h-full w-full resize-none rounded-lg border-2 border-(--primary)"
+              id="text-input"
+            />
 
             <div className="w-full flex">
-              <span />
+              <span className="w-full" />
               <button
                 type="submit"
                 className="text-3xl font-medium px-7 py-5 pb-6 rounded-md  hover:shadow-md text-(--accent) bg-(--accent-secondary)"
