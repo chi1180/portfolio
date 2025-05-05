@@ -1,8 +1,9 @@
 import type { Options } from "@emailjs/browser/es/types/Options";
 import emailjs from "@emailjs/browser";
+import { logging } from "../logger";
 
 const options: Options = {
-  publicKey: process.env.publicKey,
+  publicKey: process.env.NEXT_PUBLIC_publicKey,
   blockHeadless: true,
   limitRate: {
     id: "app",
@@ -12,6 +13,7 @@ const options: Options = {
 
 function emailJsInit() {
   emailjs.init(options);
+  logging("EmailJS initialized", "INFO");
 }
 
 export { emailJsInit };

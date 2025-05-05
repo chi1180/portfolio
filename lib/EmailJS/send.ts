@@ -1,26 +1,31 @@
+import { logging } from "../logger";
 import { emailJsInit } from "./init";
 import emailjs from "@emailjs/browser";
 
 const props = {
-  serviceID: process.env.serviceID || "",
-  templateID: process.env.templateID || "",
+  serviceID: process.env.NEXT_PUBLIC_serviceID || "",
+  templateID: process.env.NEXT_PUBLIC_templateID || "",
   templateParams: {
-    name: "message",
-    notes: "",
+    message: "",
   },
 };
 
 function sendEmail(message: string) {
-  props.templateParams.notes = message;
+  props.templateParams.message = message;
 
   emailJsInit();
 
+  logging(JSON.stringify(props.templateParams), "DEBUG");
+
   emailjs.send(props.serviceID, props.templateID, props.templateParams).then(
     (response) => {
-      console.log("Succeeded!", response.status, response.text);
+      logging(
+        `Email sent successfully\n${response.status}\n${response.text}`,
+        "INFO",
+      );
     },
     (error) => {
-      console.log("Failed...", error);
+      logging(`Failed...\n${error}`, "ERROR");
     },
   );
 }
