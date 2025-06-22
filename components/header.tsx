@@ -42,7 +42,7 @@ export default function Header() {
 
   return (
     <header
-      className={`w-full h-24 bg-(--background) flex items-center justify-between p-8 sticky top-0 ${scrolled ? "shadow-md" : ""}`}
+      className={`w-full h-24 bg-(--background) flex items-center justify-between p-8 sticky top-0 z-50 ${scrolled ? "shadow-md" : ""}`}
     >
       <h1 className="text-4xl font-medium">Chi1180</h1>
       <nav className="h-full">

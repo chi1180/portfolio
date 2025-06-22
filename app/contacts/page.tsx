@@ -3,6 +3,8 @@
 import Header from "@/components/header";
 import Link from "next/link";
 import { submitHandler } from "@/lib/contactForm";
+import { useId } from "react";
+import Footer from "@/components/footer";
 
 export default function ContactsPage() {
   const SNS = {
@@ -10,6 +12,9 @@ export default function ContactsPage() {
     Qiita: "https://qiita.com/chi1180",
     Lapras: "https://lapras.com/public/KYH2X5C",
   };
+
+  const submit_btn_id = useId();
+  const textarea_id = useId();
   return (
     <div className="w-full">
       <Header />
@@ -42,25 +47,29 @@ export default function ContactsPage() {
               event.preventDefault();
 
               const textArea = document.getElementById(
-                "text-input",
+                textarea_id,
               ) as HTMLTextAreaElement;
               if (textArea) {
-                submitHandler(textArea.value);
-                textArea.value = "Thank you for your message :)";
+                if (textArea.value.trim() !== "") {
+                  submitHandler(textArea.value);
+                  textArea.value = "Thank you for your message :)";
 
-                // Disable resend action.
-                textArea.readOnly = true;
-                const submitBtn = document.getElementById(
-                  "submit-btn",
-                ) as HTMLButtonElement;
-                submitBtn.disabled = true;
-                submitBtn.classList.add("opacity-50");
+                  // Disable resend action.
+                  textArea.readOnly = true;
+                  const submitBtn = document.getElementById(
+                    submit_btn_id,
+                  ) as HTMLButtonElement;
+                  submitBtn.disabled = true;
+                  submitBtn.classList.add("opacity-50");
+                } else {
+                  alert("Please fill some text🙁");
+                }
               }
             }}
           >
             <textarea
               className="h-full w-full p-4 resize-none rounded-lg border-2 border-(--primary) shadow-md text-xl lg:text-2xl focus:outline-0 min-h-96"
-              id="text-input"
+              id={textarea_id}
             />
 
             <div className="w-full flex">
@@ -68,7 +77,7 @@ export default function ContactsPage() {
               <button
                 type="submit"
                 className="text-2xl md:text-3xl font-medium px-7 py-5 pb-6 rounded-md  hover:shadow-md text-(--accent) bg-(--accent-secondary)"
-                id="submit-btn"
+                id={submit_btn_id}
               >
                 Send
               </button>
@@ -76,6 +85,8 @@ export default function ContactsPage() {
           </form>
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 }
