@@ -2,7 +2,6 @@
 
 import Footer from "@/components/footer";
 import Header from "@/components/header";
-import { clearInterval, setInterval } from "node:timers";
 import { useEffect, useState } from "react";
 
 export default function ProjectsPage() {
