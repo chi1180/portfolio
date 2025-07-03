@@ -2,6 +2,7 @@
 
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import SwiperComponent from "@/components/swiper";
 import { useEffect, useState } from "react";
 
 export default function ProjectsPage() {
@@ -75,13 +76,23 @@ export default function ProjectsPage() {
 
             {tagList(["web", "next.js", "mongo_db", "line"])}
 
-            {timeData(["2025 Jun 22"])}
+            {timeData(["2025 May 04"])}
 
             {description(`LINEnglish is a web application that helps users learn English
             more easily. It provides a variety of features such as vocabulary
             quizzes, grammar exercises, and conversation practice. The
             application is designed to be user-friendly and accessible to all
             levels of English learners.`)}
+
+            <div className="w-[calc(100vw-64rem)] py-24 mx-auto">
+              <SwiperComponent
+                pictures={[
+                  "/projects/linenglish/lp.png",
+                  "/projects/linenglish/dashboard.png",
+                  "/projects/linenglish/vocab.png",
+                ]}
+              />
+            </div>
           </div>
         </fieldset>
       </main>

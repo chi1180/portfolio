@@ -12,7 +12,9 @@
     "@emailjs/browser": "^4.4.1",
     "next": "15.3.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "swiper": "^11.2.10",
+    "vue": "^3.5.17"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

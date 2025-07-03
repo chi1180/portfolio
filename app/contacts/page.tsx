@@ -70,6 +70,7 @@ export default function ContactsPage() {
             <textarea
               className="h-full w-full p-4 resize-none rounded-lg border-2 border-(--primary) shadow-md text-xl lg:text-2xl focus:outline-0 min-h-96"
               id={textarea_id}
+              placeholder="Please fill. and send to me :)"
             />
 
             <div className="w-full flex">
