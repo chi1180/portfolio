@@ -3,7 +3,9 @@
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import SwiperComponent from "@/components/swiper";
+import Link from "next/link";
 import { useEffect, useState } from "react";
+import { projectData, ProjectInfo } from "./data";
 
 export default function ProjectsPage() {
   const [developing_text, setDevelopingText] = useState("In developing");
@@ -20,10 +22,22 @@ export default function ProjectsPage() {
     return () => clearInterval(intervalFunc);
   }, []);
 
-  const projectTitle = (title: string, sub: string) => {
+  const projectTitle = (title: string, sub: string, link?: string) => {
     return (
       <div className="px-8 border-l-8 border-(--accent)">
-        <h1 className="text-6xl pb-4">{title}</h1>
+        {link?.trim() !== "" ? (
+          <Link
+            href={link || ""}
+            className="w-fit inline-block"
+            target="_blank"
+          >
+            <h1 className="text-6xl pb-4 hover:text-(--accent) transition-all duration-300 ease-in w-fit">
+              {title}
+            </h1>
+          </Link>
+        ) : (
+          <h1 className="text-6xl pb-4">{title}</h1>
+        )}
         <p className="text-xl">{sub}</p>
       </div>
     );
@@ -31,10 +45,10 @@ export default function ProjectsPage() {
 
   const tagList = (tags: Array<string>) => {
     return (
-      <div className="flex gap-4 flex-wrap my-8 mb-4">
+      <div className="flex gap-4 flex-wrap my-4 mb-2">
         {tags.map((tag, index) => (
           <span
-            className="py-4 px-6 rounded-full bg-(--accent) text-white font-medium"
+            className="py-2 px-5 rounded-full bg-(--accent) text-white font-medium"
             key={index.toString().concat(tag)}
           >
             {tag}
@@ -58,6 +72,30 @@ export default function ProjectsPage() {
     return <p className="max-w-[800] text-3xl leading-12 mt-12">{text}</p>;
   };
 
+  function projectViewFormator(project_info: ProjectInfo) {
+    return (
+      <div className="mx-24">
+        {projectTitle(
+          project_info.title_contents.title,
+          project_info.title_contents.sub,
+          project_info.title_contents.link,
+        )}
+
+        {tagList(project_info.tag_list)}
+
+        {timeData(project_info.time)}
+
+        {description(project_info.description)}
+
+        <div className="w-[calc(100vw-64rem)] py-24 mx-auto">
+          <SwiperComponent pictures={project_info.pictures} />
+        </div>
+      </div>
+    );
+  }
+
+  const project_data = projectData;
+
   return (
     <div className="w-full">
       <Header />
@@ -68,32 +106,13 @@ export default function ProjectsPage() {
             {developing_text}
           </legend>
 
-          <div className="mx-24">
-            {projectTitle(
-              "LINEnglish",
-              "A web application for learning English more easily to continue :)",
-            )}
-
-            {tagList(["web", "next.js", "mongo_db", "line"])}
-
-            {timeData(["2025 May 04"])}
-
-            {description(`LINEnglish is a web application that helps users learn English
-            more easily. It provides a variety of features such as vocabulary
-            quizzes, grammar exercises, and conversation practice. The
-            application is designed to be user-friendly and accessible to all
-            levels of English learners.`)}
-
-            <div className="w-[calc(100vw-64rem)] py-24 mx-auto">
-              <SwiperComponent
-                pictures={[
-                  "/projects/linenglish/lp.png",
-                  "/projects/linenglish/dashboard.png",
-                  "/projects/linenglish/vocab.png",
-                ]}
-              />
-            </div>
-          </div>
+          {project_data
+            .filter((d) => d.type === "developing")
+            .map((info) => (
+              <div key={info.title_contents.title}>
+                {projectViewFormator(info)}
+              </div>
+            ))}
         </fieldset>
       </main>
 

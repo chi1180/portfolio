@@ -17,28 +17,28 @@ export default function SkillPage() {
               {
                 name: ["Responsive", "web", "Design"],
                 url: "https://www.freecodecamp.org/japanese/certification/fccc270c309-fe95-47fe-aeed-839c2c79fce1/responsive-web-design",
-                img: "/Data report-amico.svg",
+                img: "/Website Creator-bro.svg",
               },
               {
                 name: ["JavaScript Algorithms", "and", "Data Structures"],
                 url: "https://www.freecodecamp.org/japanese/certification/fccc270c309-fe95-47fe-aeed-839c2c79fce1/javascript-algorithms-and-data-structures",
-                img: "/Website Creator-bro.svg",
+                img: "/Data report-amico.svg",
               },
             ].map((certification) => (
               <Link
                 href={certification.url}
                 target="_blank"
                 key={certification.name.at(0)}
-                className="h-full aspect-square rounded-lg shadow-md p-6 flex flex-col items-center justify-center border-l-8 border-l-(--accent) border border-(--primary) hover:shadow-lg hover:-translate-4 duration-300 ease-in transition-all"
+                className="h-full aspect-square rounded-lg shadow-md p-3 sm:p-6 flex flex-col items-center justify-center border-l-8 border-l-(--accent) border border-(--primary) hover:shadow-lg hover:-translate-4 duration-300 ease-in transition-all"
               >
-                <h3 className="flex flex-col items-center gap-12">
+                <h3 className="flex flex-col items-center gap-6 -mb-32">
                   {certification.name.map((name) => (
-                    <span className="block text-6xl" key={name}>
+                    <span className="block text-6xl text-center" key={name}>
                       {name}
                     </span>
                   ))}
                 </h3>
-                <div className="w-2/3 aspect-square relative opacity-60 -m-32 -z-0">
+                <div className="w-2/3 aspect-square relative opacity-60 -z-0">
                   <Image
                     src={certification.img}
                     alt="Certification Icon"
