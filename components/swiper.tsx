@@ -24,7 +24,33 @@ export default function SwiperComponent({ pictures }: swiperComponentProps) {
         {pictures.map((picture, index) => (
           <SwiperSlide key={`${picture}-${index.toString()}`} className="p-4">
             <div className="h-full aspect-video relative mx-auto">
-              <Image src={picture} alt={`Slide ${index + 1}`} fill />
+              {(picture.split(".").at(-1) === "png" ||
+                picture.split(".").at(-1) === "jpg" ||
+                picture.split(".").at(-1) === "gif") && (
+                <Image src={picture} alt={`Slide ${index + 1}`} fill />
+              )}
+
+              {picture.split(".").at(-1) === "mp4" && (
+                <video
+                  src={picture}
+                  controls
+                  className="w-full h-full"
+                  autoPlay={false}
+                >
+                  <track
+                    kind="captions"
+                    src={picture.replace(".mp4", ".vtt")}
+                  />
+                </video>
+              )}
+
+              {picture.split(".").at(-1) === "pdf" && (
+                <iframe
+                  src={picture}
+                  title={picture}
+                  className="w-full h-full"
+                />
+              )}
             </div>
           </SwiperSlide>
         ))}
