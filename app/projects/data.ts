@@ -104,10 +104,7 @@ export const projectData = [
     time: ["2024 Oct 13", "2025 May 28"],
     description:
       "My first Next.js web app.It manages user's device battery usage.Notify unenough battery amount.",
-    pictures: [
-      "/projects/batterysupporter/slide.pdf",
-      // "/projects/batterysupporter/movie.mp4",
-    ],
+    pictures: ["/projects/batterysupporter/slide.pdf"],
   },
   {
     type: "developed",
