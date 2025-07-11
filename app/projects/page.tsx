@@ -6,6 +6,7 @@ import SwiperComponent from "@/components/swiper";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { projectData, type ProjectInfo } from "./data";
+import IndexBar from "@/components/indexbar";
 
 export default function ProjectsPage() {
   const [developing_text, setDevelopingText] = useState("🧑‍💻 In developing");
@@ -74,7 +75,12 @@ export default function ProjectsPage() {
 
   function projectViewFormator(project_info: ProjectInfo) {
     return (
-      <div className="mx-24">
+      <div
+        className="mx-24 pt-28"
+        id={project_info.title_contents.title
+          .toLowerCase()
+          .replaceAll(" ", "-")}
+      >
         {projectTitle(
           project_info.title_contents.title,
           project_info.title_contents.sub,
@@ -100,6 +106,7 @@ export default function ProjectsPage() {
   return (
     <div className="w-full">
       <Header />
+      <IndexBar contents={project_data} />
       <main>
         {/* In developing  */}
         <fieldset>
@@ -108,7 +115,7 @@ export default function ProjectsPage() {
           </legend>
 
           {project_data
-            .filter((d) => d.type === "developing")
+            .filter((d) => d.type === "in-developing")
             .map((info) => (
               <div key={info.title_contents.title}>
                 {projectViewFormator(info)}

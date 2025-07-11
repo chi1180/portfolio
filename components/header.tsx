@@ -63,7 +63,7 @@ export default function Header() {
             <li key={link}>
               <a
                 href={link === "home" ? "/" : `/${link}`}
-                className={`mb-4 text-2xl font-medium ${`/${link}` === pageLocation ? "text-(--accent)" : ""}`}
+                className={`mb-4 text-2xl font-medium ${`/${link}` === pageLocation ? "text-(--accent)" : ""} ${pageLocation === "/" && link === "home" ? "text-(--accent)" : ""}`}
               >
                 {link.at(0)?.toUpperCase() + link.slice(1)}
               </a>

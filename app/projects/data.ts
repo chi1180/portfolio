@@ -1,6 +1,6 @@
 export const projectData = [
   {
-    type: "developing",
+    type: "in-developing",
     title_contents: {
       title: "LINEnglish",
       sub: "A web application for learning English more easily to continue :)",
@@ -129,7 +129,7 @@ export const projectData = [
       link: "https://github.com/chi1180/EnglishNote",
     },
     tag_list: ["electron", "javascript", "html", "css"],
-    time: [""],
+    time: ["2025 Jun 2", "2025 Jun 7"],
     description:
       "Simple Electron desktop application for managing English vocabularies with prints.",
     pictures: [
@@ -220,7 +220,7 @@ export const projectData = [
 ] as ProjectInfo[];
 
 export interface ProjectInfo {
-  type: "developing" | "developed" | "mini-project";
+  type: "in-developing" | "developed" | "mini-project";
   title_contents: {
     title: string;
     sub: string;

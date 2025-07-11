@@ -6,3 +6,7 @@
   --secondary: "#EBF5FE";
   --text: "#1a1a1a";
 }
+
+* {
+  scroll-behavior: smooth;
+}
