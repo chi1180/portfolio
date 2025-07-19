@@ -1,4 +1,4 @@
-import type { ProjectInfo } from "@/app/projects/data";}
+import type { ProjectInfo } from "@/app/projects/data"}
 
 export type swiperComponentProps = {
   pictures: string[];
