@@ -10,7 +10,7 @@ import "swiper/css/navigation";
 
 export default function SwiperComponent({ pictures }: swiperComponentProps) {
   return (
-    <div className="w-full h-[400]">
+    <div className="w-full h-full sm:h-[400]">
       <Swiper
         pagination={{
           type: "progressbar",
@@ -22,7 +22,10 @@ export default function SwiperComponent({ pictures }: swiperComponentProps) {
         className="h-full"
       >
         {pictures.map((picture, index) => (
-          <SwiperSlide key={`${picture}-${index.toString()}`} className="p-4">
+          <SwiperSlide
+            key={`${picture}-${index.toString()}`}
+            className="p-2 sm:p-4"
+          >
             <div className="h-full aspect-video relative mx-auto">
               {(picture.split(".").at(-1) === "png" ||
                 picture.split(".").at(-1) === "jpg" ||
