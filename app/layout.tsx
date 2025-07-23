@@ -11,8 +11,10 @@ export const metadata: Metadata = {
   title: "Chi1180",
   description: "A portfolio website of Chi1180",
   keywords: ["portfolio", "website", "Chi1180"],
+  verification: {
+    google: "dVRTS_9lJ9SL6_YPh2Il8afiUi0v_3EbbHesLSBdDeo",
+  },
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
