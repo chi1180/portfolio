@@ -3,16 +3,14 @@ export const projectData = [
     type: "in-developing",
     title_contents: {
       title: "LINEnglish",
-      sub: "A web application for learning English more easily to continue :)",
+      sub: "英単語をもっと簡単に、継続して学べるようにするウェブアプリケーションです :)",
       link: "https://github.com/chi1180/LINEnglish-Web",
     },
     tag_list: ["web", "next.js", "supabase", "line"],
     time: ["2025 May 04"],
-    description: `LINEnglish is a web application that helps users learn English
-  more easily. It provides a variety of features such as vocabulary
-  quizzes, grammar exercises, and conversation practice. The
-  application is designed to be user-friendly and accessible to all
-  levels of English learners.`,
+    description: `LINEnglishは、ユーザーが英語をより簡単に継続して学べるようにするウェブアプリケーションです。
+  ユーザが登録する単語を用いて、ユーザ専用の語彙データベースを構築し、日常的に習慣化できる語彙クイズを提供します。
+  このアプリケーションの語彙クイズは、LINEを媒体に動作し、ユーザにとってアクセスしやすいように設計されています。`,
     pictures: [
       "/projects/linenglish/lp.png",
       "/projects/linenglish/dashboard.png",
@@ -23,13 +21,13 @@ export const projectData = [
     type: "developed",
     title_contents: {
       title: "Schedule manager",
-      sub: "Simple web schedule manager app.",
+      sub: "シンプルなウェブスケジュール管理アプリ。",
       link: "https://github.com/chi1180/schedule-manager?tab=readme-ov-file",
     },
     tag_list: ["web", "pure-html", "pure-css", "pure-js"],
     time: ["...I can't remember"],
     description:
-      "First web app in my life.\nVery simple, pure-html, pure-css, pure-js project.\nWorked on GitHub pages.",
+      "私の人生で最初のウェブアプリです。\n非常にシンプルなpure-html、pure-css、pure-jsプロジェクト。\nGitHub Pagesで動作します。",
     pictures: [
       "/projects/schedulemanager/calendar.png",
       "/projects/schedulemanager/entry.png",
@@ -39,13 +37,13 @@ export const projectData = [
     type: "developed",
     title_contents: {
       title: "Report manager",
-      sub: "Simple web report manager app.",
+      sub: "シンプルなウェブレポート管理アプリ。",
       link: "https://github.com/chi1180/report-manager?tab=readme-ov-file",
     },
     tag_list: ["web", "pure-html", "pure-css", "pure-js"],
     time: ["...I can't remember"],
     description:
-      "Second web app in my life.Very simple, pure-html, pure-css, pure-js project.Worked on GitHub pages.",
+      "私の人生で2番目のウェブアプリです。\n非常にシンプルなpure-html、pure-css、pure-jsプロジェクト。\nGitHub Pagesで動作します。",
     pictures: [
       "/projects/reportmanager/manager.png",
       "/projects/reportmanager/calendar.png",
@@ -56,13 +54,13 @@ export const projectData = [
     type: "developed",
     title_contents: {
       title: "Homework manager",
-      sub: "Simple web homework manager app.",
+      sub: "シンプルなウェブ宿題管理アプリ。",
       link: "https://github.com/chi1180/homework-manager",
     },
     tag_list: ["web", "pure-html", "pure-css", "pure-js"],
     time: ["...I can't remember"],
     description:
-      "Simple web homework manager app using pure-html, pure-css, pure-js.Worked on GitHub pages.",
+      "pure-html、pure-css、pure-jsを使用したシンプルなウェブ宿題管理アプリ。\nGitHub Pagesで動作します。",
     pictures: [
       "/projects/homeworkmanager/ver1.png",
       "/projects/homeworkmanager/ver2.png",
@@ -72,13 +70,13 @@ export const projectData = [
     type: "developed",
     title_contents: {
       title: "My site",
-      sub: "My first(?) portfolio web site.",
+      sub: "私の最初(?)のポートフォリオウェブサイト。",
       link: "https://github.com/chi1180/my-site",
     },
     tag_list: ["web", "pure-html", "pure-css", "pure-js"],
     time: ["...I can't remember", "2024 Sept 15"],
     description:
-      "First web app that using API (to send e-mail, to render markdown) in my life.May be it is my first portfolio site in my life.",
+      "私の人生で初めてAPI（メール送信、Markdownレンダリング）を使用したウェブアプリ。\nおそらく私の人生で最初のポートフォリオサイトです。",
     pictures: [
       "/projects/mysite/top.png",
       "/projects/mysite/aboutme.png",
@@ -89,7 +87,7 @@ export const projectData = [
     type: "developed",
     title_contents: {
       title: "Battery supportor",
-      sub: "Manage battery usage in laptop",
+      sub: "ノートパソコンのバッテリー使用を管理します。",
       link: "https://github.com/chi1180/BatterySupporter-ver3",
     },
     tag_list: [
@@ -103,19 +101,19 @@ export const projectData = [
     ],
     time: ["2024 Oct 13", "2025 May 28"],
     description:
-      "My first Next.js web app.It manages user's device battery usage.Notify unenough battery amount.",
+      "私の初めてのNext.jsウェブアプリ。\nユーザーのデバイスのバッテリー使用を管理します。\nバッテリー不足を通知します。",
     pictures: ["/projects/batterysupporter/slide.pdf"],
   },
   {
     type: "developed",
     title_contents: {
       title: "Stock counter",
-      sub: "Stock counter for school fes.",
+      sub: "学園祭用の在庫カウンター。",
       link: "https://github.com/chi1180/StockCounter",
     },
     tag_list: ["next.js", "supabase", "typescript", "tailwindcss"],
     time: ["2025 May 17", "2025 Jun 7"],
-    description: "Stock counter for school fes.",
+    description: "学園祭用の在庫カウンター。",
     pictures: [
       "/projects/stockcounter/glaf.png",
       "/projects/stockcounter/counter.png",
@@ -125,13 +123,13 @@ export const projectData = [
     type: "developed",
     title_contents: {
       title: "English note",
-      sub: "A desktop app manage English vocabularies with prints.",
+      sub: "プリントと一緒に英単語を管理するデスクトップアプリ。",
       link: "https://github.com/chi1180/EnglishNote",
     },
     tag_list: ["electron", "javascript", "html", "css"],
     time: ["2025 Jun 2", "2025 Jun 7"],
     description:
-      "Simple Electron desktop application for managing English vocabularies with prints.",
+      "プリントと一緒に英単語を管理するためのシンプルなElectronデスクトップアプリケーションです。\nプリントを見返すことなんてありません！\nかばんの中で溜まっていき、貴重なラップトップを入れる場所を奪います。PDFにしてアプリで管理しましょう！、というアイディアです。",
     pictures: [
       "/projects/englishnote/top.png",
       "/projects/englishnote/btm.png",
@@ -141,7 +139,7 @@ export const projectData = [
     type: "mini-project",
     title_contents: {
       title: "Tic tac toe",
-      sub: "My first python app using Tkinter.",
+      sub: "Tkinterを使用した私の最初のPythonアプリ。",
       link: "https://github.com/chi1180/tic-tac-toe",
     },
     tag_list: ["python", "tkinter"],
@@ -151,7 +149,7 @@ export const projectData = [
     type: "mini-project",
     title_contents: {
       title: "Easy computer",
-      sub: "My first python cal app using Tkinter.",
+      sub: "Tkinterを使用した私の最初のPython計算アプリ。",
       link: "https://github.com/chi1180/easy-computer",
     },
     tag_list: ["python", "tkinter"],
@@ -161,7 +159,7 @@ export const projectData = [
     type: "mini-project",
     title_contents: {
       title: "Light controller with Arduino",
-      sub: "Simple desk light controller using Arduino system.",
+      sub: "Arduinoシステムを使用したシンプルなデスクライトコントローラー。",
       link: "https://github.com/chi1180/light-controller-with-arduino",
     },
     tag_list: ["arduino", "c++", "iot"],
@@ -171,7 +169,7 @@ export const projectData = [
     type: "mini-project",
     title_contents: {
       title: "Tkinter computer by CTK",
-      sub: "Simple calc app using Custom Tkinter in Python.",
+      sub: "PythonのCustom Tkinterを使用したシンプルな計算アプリ。",
       link: "https://github.com/chi1180/Tkinter-computer-by-CTk",
     },
     tag_list: ["python", "tkinter", "custom-tkinter"],
@@ -181,7 +179,7 @@ export const projectData = [
     type: "mini-project",
     title_contents: {
       title: "Ball keeper",
-      sub: "Simple ball keep game in pure-html, css, js. Worked on GitHub pages.",
+      sub: "pure-html、css、jsで作成したシンプルなボールキープゲーム。\nGitHub Pagesで動作します。",
       link: "https://github.com/chi1180/ball-keeper",
     },
     tag_list: ["python", "tkinter", "custom-tkinter"],
@@ -191,7 +189,7 @@ export const projectData = [
     type: "mini-project",
     title_contents: {
       title: "Home browser page",
-      sub: "Customized browser home page. I used Firefox.",
+      sub: "カスタマイズされたブラウザのホームページ。\nFirefoxを使用しました。",
       link: "https://github.com/chi1180/home-browser-page",
     },
     tag_list: ["html", "css", "firefox"],
@@ -201,7 +199,7 @@ export const projectData = [
     type: "mini-project",
     title_contents: {
       title: "Tic tac toe web",
-      sub: "Simple tic tac toe app in web. Worked on GitHub pages.",
+      sub: "ウェブ上のシンプルな三目並べアプリ。\nGitHub Pagesで動作します。",
       link: "https://github.com/chi1180/tic-tac-toe-web-",
     },
     tag_list: ["html", "css", "game"],
@@ -211,7 +209,7 @@ export const projectData = [
     type: "mini-project",
     title_contents: {
       title: "Desk changer",
-      sub: "Simple random desk changing app in web. Worked on GitHub pages.",
+      sub: "ウェブ上のシンプルなランダムデスクチェンジアプリ。\nGitHub Pagesで動作します。",
       link: "https://github.com/chi1180/desk-changer",
     },
     tag_list: ["html", "css"],

@@ -72,7 +72,12 @@ export default function ProjectsPage() {
   const description = (text: string) => {
     return (
       <p className="w-full sm:max-w-[800] text-xl sm:text-3xl leading-8 sm:leading-12">
-        {text}
+        {text.split("\n").map((line) => (
+          <span key={line}>
+            {line}
+            <br />
+          </span>
+        ))}
       </p>
     );
   };
