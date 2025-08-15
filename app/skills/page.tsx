@@ -63,11 +63,11 @@ export default function SkillPage() {
           <div className="px-4 sm:px-24 py-6 sm:py-12 flex flex-wrap gap-12 sm:gap-24 justify-center">
             {[
               {
-                name: "JavaScript❤️",
+                name: "JavaScript",
                 tags: ["web", "electron", "react", "node.js"],
               },
               {
-                name: "TypeScript",
+                name: "TypeScript❤️",
                 tags: ["web", "next.js"],
               },
               {
