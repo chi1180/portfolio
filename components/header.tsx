@@ -18,7 +18,7 @@ function setColor() {
 }
 
 export default function Header() {
-  const LINKS = ["home", "skills", "projects", "contacts"];
+  const LINKS = ["home", "skills", "contacts"];
   const [pageLocation, setPageLocation] = useState("");
 
   const [scrolled, setScrolled] = useState(false);

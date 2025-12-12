@@ -21,10 +21,10 @@ export default function Home() {
               See skill set
             </Link>
             <Link
-              href="/projects"
+              href="https://github.com/chi1180"
               className="text-(--accent) bg-(--accent-secondary)"
             >
-              See projects
+              See GitHub
             </Link>
           </div>
         </div>
