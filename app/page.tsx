@@ -1,39 +1,83 @@
-import Footer from "@/components/footer";
+"use client";
+
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useTheme } from "@/components/ThemeProvider";
 import Header from "@/components/header";
-import Link from "next/link";
+import Footer from "@/components/footer";
+import HeroSection from "@/components/sections/HeroSection";
+import SkillsSection from "@/components/sections/SkillsSection";
+import CertificationsSection from "@/components/sections/CertificationsSection";
+import ContactSection from "@/components/sections/ContactSection";
+import CyberSwitcher from "@/components/themes/CyberSwitcher";
+import TerminalSwitcher from "@/components/themes/TerminalSwitcher";
 
 export default function Home() {
+  const router = useRouter();
+  const { theme, isFirstVisit } = useTheme();
+
+  // Redirect to intro page on first visit
+  useEffect(() => {
+    if (isFirstVisit) {
+      router.push("/intro");
+    }
+  }, [isFirstVisit, router]);
+
+  // Don't render content during first visit redirect
+  if (isFirstVisit) {
+    return (
+      <div
+        className="min-h-screen flex items-center justify-center"
+        style={{ background: "var(--background)" }}
+      >
+        <div
+          className="text-2xl animate-pulse"
+          style={{ color: "var(--foreground)" }}
+        >
+          Loading...
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="w-full">
+    <div
+      className={`
+        min-h-screen
+        ${theme === "cyber" ? "scanlines" : ""}
+        ${theme === "terminal" ? "crt" : ""}
+      `}
+      style={{
+        background: "var(--background)",
+        color: "var(--foreground)",
+      }}
+    >
+      {/* Header */}
       <Header />
 
-      <main className="w-full lg:max-w-[1400px] lg:mx-auto lg:h-[calc(100vh-6rem)] h-auto lg:p-8 p-4 flex flex-col lg:flex-row lg:items-center lg-gap-0">
-        {/* Left contents */}
-        <div className="w-full py-24 lg:py-0">
-          <h3 className="text-6xl pb-6">Hi, I'm Chi1180</h3>
-          <h1 className="text-8xl">A little coder_</h1>
-          <h3 className="text-4xl pt-8 pb-22">
-            Write code for Web, Desktop and Mobile...
-          </h3>
+      {/* Main Content */}
+      <main className="relative">
+        {/* Hero Section */}
+        <HeroSection />
 
-          <div className="flex gap-8 *:text-3xl *:font-medium *:px-7 *:py-5 *:pb-6 *:rounded-md  *:hover:shadow-md">
-            <Link href="/skills" className="text-white bg-(--accent)">
-              See skill set
-            </Link>
-            <Link
-              href="https://github.com/chi1180"
-              className="text-(--accent) bg-(--accent-secondary)"
-            >
-              See GitHub
-            </Link>
-          </div>
-        </div>
+        {/* Skills Section */}
+        <SkillsSection />
 
-        {/* Right contents */}
-        <div className="h-4/5 aspect-square bg-cover bg-center bg-[url(/top-image.png)]" />
+        {/* Certifications Section */}
+        <CertificationsSection />
+
+        {/* Contact Section */}
+        <ContactSection />
       </main>
 
+      {/* Footer */}
       <Footer />
+
+      {/* Theme Switchers - Position based on current theme */}
+      {theme === "cyber" && <CyberSwitcher />}
+      {theme === "terminal" && <TerminalSwitcher />}
+
+      {/* Minimal theme uses header-integrated switcher, no floating button needed */}
     </div>
   );
 }

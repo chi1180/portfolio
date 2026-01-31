@@ -1,12 +1,856 @@
 @import "tailwindcss";
 
+/* ===================================
+   BASE THEME VARIABLES
+   =================================== */
+
 :root {
-  --primary: "#eaeaea";
-  --accent: "#2563EB";
-  --secondary: "#EBF5FE";
-  --text: "#1a1a1a";
+  /* Default: Minimal Light */
+  --background: #ffffff;
+  --background-secondary: #f5f7fa;
+  --foreground: #1a1a2e;
+  --foreground-secondary: #4a5568;
+  --accent: #3b82f6;
+  --accent-secondary: #dbeafe;
+  --accent-hover: #2563eb;
+  --border: #e2e8f0;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --shadow: rgba(0, 0, 0, 0.08);
+
+  /* Animation speeds */
+  --transition-fast: 150ms;
+  --transition-normal: 300ms;
+  --transition-slow: 500ms;
+
+  /* Typography */
+  --font-mono:
+    "Fira Code", "SF Mono", "Monaco", "Inconsolata", "Roboto Mono", monospace;
 }
 
+/* ===================================
+   MINIMAL THEME
+   =================================== */
+[data-theme="minimal"] {
+  --background: #ffffff;
+  --background-secondary: #f8fafc;
+  --foreground: #0f172a;
+  --foreground-secondary: #475569;
+  --accent: #3b82f6;
+  --accent-secondary: #eff6ff;
+  --accent-hover: #2563eb;
+  --border: #e2e8f0;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --shadow: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="minimal"][data-mode="dark"],
+[data-theme="minimal"][data-color-mode="dark"] {
+  --background: #0f172a;
+  --background-secondary: #1e293b;
+  --foreground: #f1f5f9;
+  --foreground-secondary: #94a3b8;
+  --accent: #60a5fa;
+  --accent-secondary: #1e3a5f;
+  --accent-hover: #93c5fd;
+  --border: #334155;
+  --card-bg: #1e293b;
+  --card-border: #334155;
+  --shadow: rgba(0, 0, 0, 0.3);
+}
+
+/* ===================================
+   CYBERPUNK THEME
+   =================================== */
+[data-theme="cyber"] {
+  --background: #0c0a1d;
+  --background-secondary: #13102a;
+  --foreground: #f0eeff;
+  --foreground-secondary: #b8b5d0;
+  --accent: #e879f9;
+  --accent-secondary: #2d1f3d;
+  --accent-hover: #f0abfc;
+  --border: #3b2d5a;
+  --card-bg: #1a1535;
+  --card-border: #4c3a7a;
+  --shadow: rgba(232, 121, 249, 0.15);
+  --neon-pink: #f472b6;
+  --neon-cyan: #22d3ee;
+  --neon-purple: #a855f7;
+  --neon-blue: #6366f1;
+}
+
+[data-theme="cyber"][data-mode="light"],
+[data-theme="cyber"][data-color-mode="light"] {
+  --background: #1a1535;
+  --background-secondary: #231d45;
+  --foreground: #ffffff;
+  --foreground-secondary: #c4c1e0;
+  --accent: #e879f9;
+  --card-bg: #231d45;
+}
+
+/* ===================================
+   TERMINAL THEME
+   =================================== */
+[data-theme="terminal"] {
+  --background: #0a0e14;
+  --background-secondary: #0f1419;
+  --foreground: #b3f5bc;
+  --foreground-secondary: #73d982;
+  --accent: #39ff14;
+  --accent-secondary: #0f2910;
+  --accent-hover: #7fff5c;
+  --border: #1a3d1a;
+  --card-bg: #0f1a12;
+  --card-border: #2a5a2a;
+  --shadow: rgba(57, 255, 20, 0.1);
+  --terminal-green: #39ff14;
+  --terminal-dim: #73d982;
+  --terminal-bright: #b3f5bc;
+}
+
+[data-theme="terminal"][data-mode="light"],
+[data-theme="terminal"][data-color-mode="light"] {
+  --background: #f0f5f0;
+  --background-secondary: #e0ebe0;
+  --foreground: #0a2e0a;
+  --foreground-secondary: #1a5a1a;
+  --accent: #16a34a;
+  --accent-secondary: #dcfce7;
+  --card-bg: #f0f5f0;
+  --card-border: #a7d4a7;
+  --border: #a7d4a7;
+}
+
+/* ===================================
+   GLOBAL STYLES
+   =================================== */
 * {
   scroll-behavior: smooth;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--background);
+  color: var(--foreground);
+  transition:
+    background-color var(--transition-normal) ease,
+    color var(--transition-normal) ease;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: var(--accent);
+  color: var(--background);
+}
+
+/* ===================================
+   SCROLLBAR STYLING
+   =================================== */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-hover);
+}
+
+/* Terminal theme scrollbar */
+[data-theme="terminal"] ::-webkit-scrollbar-thumb {
+  background: var(--terminal-green);
+  box-shadow: 0 0 8px var(--terminal-green);
+}
+
+/* Cyber theme scrollbar */
+[data-theme="cyber"] ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--neon-pink), var(--neon-purple));
+  box-shadow: 0 0 8px var(--neon-pink);
+}
+
+/* ===================================
+   ANIMATIONS - TYPING
+   =================================== */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--accent);
+  }
+}
+
+@keyframes cursor-blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.typing-cursor::after {
+  content: "_";
+  animation: cursor-blink 1s infinite;
+}
+
+/* ===================================
+   ANIMATIONS - FADE & SLIDE
+   =================================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn var(--transition-slow) ease forwards;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp var(--transition-slow) ease forwards;
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown var(--transition-slow) ease forwards;
+}
+
+.animate-fade-in-left {
+  animation: fadeInLeft var(--transition-slow) ease forwards;
+}
+
+.animate-fade-in-right {
+  animation: fadeInRight var(--transition-slow) ease forwards;
+}
+
+.animate-slide-in-up {
+  animation: slideInUp var(--transition-slow) ease forwards;
+}
+
+/* Staggered animations */
+.stagger-1 {
+  animation-delay: 100ms;
+}
+.stagger-2 {
+  animation-delay: 200ms;
+}
+.stagger-3 {
+  animation-delay: 300ms;
+}
+.stagger-4 {
+  animation-delay: 400ms;
+}
+.stagger-5 {
+  animation-delay: 500ms;
+}
+
+/* ===================================
+   ANIMATIONS - CYBER/NEON
+   =================================== */
+@keyframes neon-pulse {
+  0%,
+  100% {
+    text-shadow:
+      0 0 4px var(--neon-pink),
+      0 0 8px var(--neon-pink),
+      0 0 16px var(--neon-pink);
+  }
+  50% {
+    text-shadow:
+      0 0 8px var(--neon-pink),
+      0 0 16px var(--neon-pink),
+      0 0 32px var(--neon-pink);
+  }
+}
+
+@keyframes neon-flicker {
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+    text-shadow:
+      0 0 4px var(--neon-cyan),
+      0 0 8px var(--neon-cyan);
+    opacity: 1;
+  }
+  20%,
+  24%,
+  55% {
+    text-shadow: none;
+    opacity: 0.9;
+  }
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes gradient-rotate {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.neon-text {
+  animation: neon-pulse 2s ease-in-out infinite;
+}
+
+.neon-flicker {
+  animation: neon-flicker 3s linear infinite;
+}
+
+.glitch {
+  animation: glitch 0.3s ease infinite;
+}
+
+/* Cyber gradient border */
+.cyber-border {
+  position: relative;
+  background: var(--card-bg);
+}
+
+.cyber-border::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(
+    45deg,
+    var(--neon-pink),
+    var(--neon-purple),
+    var(--neon-cyan),
+    var(--neon-pink)
+  );
+  background-size: 300% 300%;
+  animation: gradient-rotate 3s ease infinite;
+  z-index: -1;
+  border-radius: inherit;
+}
+
+/* Subtle scanline overlay for cyber theme */
+.scanlines::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.05),
+    rgba(0, 0, 0, 0.05) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ===================================
+   ANIMATIONS - TERMINAL
+   =================================== */
+@keyframes terminal-glow {
+  0%,
+  100% {
+    text-shadow:
+      0 0 4px var(--terminal-green),
+      0 0 8px var(--terminal-green);
+  }
+  50% {
+    text-shadow:
+      0 0 8px var(--terminal-green),
+      0 0 16px var(--terminal-green);
+  }
+}
+
+.terminal-glow {
+  animation: terminal-glow 2s ease-in-out infinite;
+}
+
+.terminal-text {
+  font-family: var(--font-mono);
+  text-shadow: 0 0 4px var(--terminal-green);
+}
+
+/* Subtle CRT effect for terminal */
+.crt::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    rgba(0, 0, 0, 0.15) 100%
+  );
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* ===================================
+   ANIMATIONS - MINIMAL
+   =================================== */
+@keyframes subtle-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes subtle-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.subtle-float {
+  animation: subtle-float 3s ease-in-out infinite;
+}
+
+.subtle-pulse {
+  animation: subtle-pulse 2s ease-in-out infinite;
+}
+
+/* ===================================
+   HOVER EFFECTS
+   =================================== */
+.hover-lift {
+  transition:
+    transform var(--transition-normal) ease,
+    box-shadow var(--transition-normal) ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px var(--shadow);
+}
+
+.hover-glow {
+  transition: box-shadow var(--transition-normal) ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 16px var(--accent);
+}
+
+/* Cyber hover */
+[data-theme="cyber"] .hover-glow:hover {
+  box-shadow:
+    0 0 16px var(--neon-pink),
+    0 0 32px var(--neon-purple);
+}
+
+/* Terminal hover */
+[data-theme="terminal"] .hover-glow:hover {
+  box-shadow: 0 0 16px var(--terminal-green);
+}
+
+/* ===================================
+   BUTTON STYLES
+   =================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all var(--transition-normal) ease;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px var(--shadow);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+}
+
+.btn-secondary:hover {
+  background-color: var(--accent);
+  color: #ffffff;
+}
+
+/* Cyber buttons */
+[data-theme="cyber"] .btn-primary {
+  background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+  color: #ffffff;
+  box-shadow: 0 0 8px var(--neon-pink);
+}
+
+[data-theme="cyber"] .btn-primary:hover {
+  box-shadow:
+    0 0 16px var(--neon-pink),
+    0 0 32px var(--neon-purple);
+}
+
+[data-theme="cyber"] .btn-secondary {
+  border-color: var(--neon-cyan);
+  color: var(--neon-cyan);
+}
+
+[data-theme="cyber"] .btn-secondary:hover {
+  background: var(--neon-cyan);
+  color: var(--background);
+  box-shadow: 0 0 16px var(--neon-cyan);
+}
+
+/* Terminal buttons */
+[data-theme="terminal"] .btn-primary {
+  background: transparent;
+  border: 2px solid var(--terminal-green);
+  color: var(--terminal-green);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+[data-theme="terminal"] .btn-primary::before {
+  content: "> ";
+}
+
+[data-theme="terminal"] .btn-primary:hover {
+  background: var(--terminal-green);
+  color: var(--background);
+  box-shadow: 0 0 16px var(--terminal-green);
+}
+
+[data-theme="terminal"] .btn-secondary {
+  border-color: var(--terminal-dim);
+  color: var(--terminal-dim);
+  font-family: var(--font-mono);
+}
+
+[data-theme="terminal"] .btn-secondary::before {
+  content: "> ";
+}
+
+[data-theme="terminal"] .btn-secondary:hover {
+  border-color: var(--terminal-green);
+  color: var(--terminal-green);
+  box-shadow: 0 0 8px var(--terminal-green);
+}
+
+/* ===================================
+   CARD STYLES
+   =================================== */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: all var(--transition-normal) ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px var(--shadow);
+}
+
+/* Cyber cards */
+[data-theme="cyber"] .card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 0 8px rgba(232, 121, 249, 0.1);
+}
+
+[data-theme="cyber"] .card:hover {
+  border-color: var(--neon-pink);
+  box-shadow:
+    0 0 24px rgba(232, 121, 249, 0.2),
+    0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Terminal cards */
+[data-theme="terminal"] .card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 0;
+  font-family: var(--font-mono);
+}
+
+[data-theme="terminal"] .card:hover {
+  border-color: var(--terminal-green);
+  box-shadow: 0 0 16px rgba(57, 255, 20, 0.15);
+}
+
+/* ===================================
+   SECTION STYLES
+   =================================== */
+.section {
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 6rem 4rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding: 8rem;
+  }
+}
+
+/* ===================================
+   INTRO PAGE STYLES
+   =================================== */
+.intro-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--background);
+  padding: 2rem;
+}
+
+.intro-text {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  line-height: 2;
+  max-width: 800px;
+}
+
+@media (min-width: 768px) {
+  .intro-text {
+    font-size: 1.5rem;
+  }
+}
+
+.intro-line {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.intro-line.visible {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+/* ===================================
+   HEADER STYLES
+   =================================== */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--background);
+  border-bottom: 1px solid var(--border);
+  transition: all var(--transition-normal) ease;
+}
+
+.header.scrolled {
+  box-shadow: 0 2px 16px var(--shadow);
+}
+
+[data-theme="cyber"] .header {
+  background: rgba(12, 10, 29, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+[data-theme="terminal"] .header {
+  background: rgba(10, 14, 20, 0.98);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ===================================
+   UTILITIES
+   =================================== */
+.glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="cyber"] .text-gradient {
+  background: linear-gradient(135deg, var(--neon-pink), var(--neon-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="terminal"] .text-gradient {
+  color: var(--terminal-green);
+  text-shadow: 0 0 8px var(--terminal-green);
+}
+
+/* Hide scrollbar but keep functionality */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ===================================
+   RESPONSIVE UTILITIES
+   =================================== */
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 4rem;
+  }
 }
