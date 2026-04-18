@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Noto_Sans_JP, Fira_Code } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const notoSansJP = Noto_Sans_JP({
   variable: "--font-noto-sans-jp",
@@ -12,6 +15,8 @@ const firaCode = Fira_Code({
   variable: "--font-fira-code",
   subsets: ["latin"],
 });
+
+const GAID = process.env.GID;
 
 export const metadata: Metadata = {
   title: "Portfolio web site of Chi1180",
@@ -56,6 +61,9 @@ export default function RootLayout({
         className={`${notoSansJP.variable} ${firaCode.variable} antialiased`}
       >
         <ThemeProvider>{children}</ThemeProvider>
+        <Analytics />
+        <SpeedInsights />
+        {GAID && <GoogleAnalytics gaId={GAID} />}
       </body>
     </html>
   );
